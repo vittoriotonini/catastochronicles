@@ -1,0 +1,381 @@
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catasto Chronicles - Homepage</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Unicase:wght@300;400;500;600;700&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Cormorant Unicase', serif;
+            height: 100vh;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px 20px;
+            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .navbar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin-right: 50px;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.4rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .navbar ul li a:hover {
+            color: #ccc;
+        }
+
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .catasto-map {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://github.com/vittoriotonini/Catasto-Chronicles_files/blob/c9f85054433880ea13df395e8f190be8c5312900/catastomap.png?raw=true');
+            background-size: cover;
+            background-position: right bottom;
+            z-index: 1;
+            filter: brightness(20%);
+        }
+
+        .pianta-catena {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/7/7b/Francesco_Rosselli_%28attribution%29._Pianta_della_Catena%2C_1470.jpg');
+            background-size: cover;
+            background-position: right bottom;
+            z-index: 2;
+            filter: brightness(15%);
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
+            visibility: visible;
+        }
+
+        .pianta-catena.hidden {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+        }
+
+        .person-tablet, .person-drawing {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: calc(50vw + 2px);
+            height: 50vh;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: right bottom;
+            z-index: 7;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+        }
+
+        .person-tablet {
+            background-image: url('https://github.com/vittoriotonini/Catasto-Chronicles_files/blob/88a7e02bd087cd5debfc66bf8029cccf1ec8239d/persontablet.png?raw=true');
+        }
+
+        .person-drawing {
+            background-image: url('https://github.com/vittoriotonini/Catasto-Chronicles_files/blob/88a7e02bd087cd5debfc66bf8029cccf1ec8239d/person%20drawing.png?raw=true');
+            z-index: 8;
+        }
+
+        .fade-in {
+            animation: fadeIn 2s ease-in-out;
+            opacity: 1;
+        }
+
+        .initial-fade-in {
+            opacity: 0;
+            animation: fadeIn 2s ease-in-out;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .content {
+            position: absolute;
+            text-align: center;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            z-index: 9;
+        }
+
+        #animated-button {
+            text-decoration: none;
+            color: #d8b365;
+            font-size: 2rem;
+            font-weight: 500;
+            border: 2px solid transparent;
+            padding: 10px 20px;
+            border-radius: 8px;
+            display: inline-block;
+            background: rgba(0, 0, 0, 0.8);
+            text-align: center;
+            border-image-source: url('https://github.com/vittoriotonini/Catasto-Chronicles_files/blob/d0cc79f0f2cf3be46e5e16dce17446ae7b2babfc/200.png?raw=true');
+            border-image-slice: 1;
+            transition: opacity 1.5s ease-in-out, transform 0.3s ease, color 0.3s ease;
+            opacity: 0;
+            pointer-events: none; /* Disabilita interazioni fino a visibilità */
+        }
+
+        #animated-button.hover-enabled {
+            pointer-events: auto; /* Abilita interazioni dopo visibilità */
+        }
+
+        #animated-button.hover-enabled:hover {
+            transform: scale(1.1);
+            transition: transform 0.3s ease;
+        }
+
+        #animated-button.visible {
+            opacity: 1;
+        }
+
+        .hidden {
+            opacity: 0;
+            pointer-events: none;
+            visibility: hidden;
+            transition: opacity 0.1s ease;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+          const personTablet = document.querySelector(".person-tablet");
+          const personDrawing = document.querySelector(".person-drawing");
+
+          personTablet.classList.add("initial-fade-in");
+          personDrawing.classList.add("initial-fade-in");
+
+          const button = document.querySelector("#animated-button");
+          const piantaCatena = document.querySelector(".pianta-catena");
+
+          button.addEventListener("mouseover", function () {
+              piantaCatena.classList.add("hidden");
+              personDrawing.classList.add("hidden");
+          });
+
+          button.addEventListener("mouseout", function () {
+              piantaCatena.classList.remove("hidden");
+              personDrawing.classList.remove("hidden");
+          });
+
+          // Animazione titolo e sottotitolo
+          var textureImage = new Image();
+          textureImage.src = 'https://github.com/vittoriotonini/Catasto-Chronicles_files/blob/d0cc79f0f2cf3be46e5e16dce17446ae7b2babfc/200.png?raw=true';
+
+          textureImage.onload = function () {
+              var canvasTitle = document.querySelector("#animated-title");
+              var ctxTitle = canvasTitle.getContext("2d");
+              ctxTitle.font = "80px 'Cormorant Unicase', serif";
+              ctxTitle.lineWidth = 2;
+              ctxTitle.lineJoin = "round";
+              ctxTitle.globalAlpha = 0.8;
+
+              var dashLen = 220, dashOffset = dashLen, speedTitle = 10;
+              var txtTitle = "Catasto Chronicles";
+              var xTitle = 20, yTitle = 150;
+              var iTitle = 0;
+
+              var titlePattern = ctxTitle.createPattern(textureImage, 'repeat');
+
+              function animateTitle() {
+                  ctxTitle.clearRect(xTitle, 0, canvasTitle.width, canvasTitle.height);
+
+                  ctxTitle.setLineDash([dashLen - dashOffset, dashOffset - speedTitle]);
+                  dashOffset -= speedTitle;
+
+                  ctxTitle.strokeStyle = titlePattern;
+                  ctxTitle.strokeText(txtTitle[iTitle], xTitle, yTitle);
+
+                  if (dashOffset > 0) {
+                      requestAnimationFrame(animateTitle);
+                  } else {
+                      ctxTitle.fillStyle = titlePattern;
+                      ctxTitle.fillText(txtTitle[iTitle], xTitle, yTitle);
+                      dashOffset = dashLen;
+                      xTitle += ctxTitle.measureText(txtTitle[iTitle++]).width + ctxTitle.lineWidth * 1.5;
+
+                      if (iTitle < txtTitle.length) {
+                          requestAnimationFrame(animateTitle);
+                      } else {
+                          fadeInSubtitleAndButton();
+                      }
+                  }
+              }
+
+              animateTitle();
+
+              function fadeInSubtitleAndButton() {
+                  var subtitleCanvas = document.querySelector("#animated-subtitle");
+                  var subtitleText = "Step back to 1427 and discover the people and places of Florentine Tuscany";
+                  var ctxSubtitle = subtitleCanvas.getContext("2d");
+                  var opacity = 0;
+                  var button = document.querySelector("#animated-button");
+
+                  ctxSubtitle.font = "40px 'Cormorant Unicase', serif";
+                  ctxSubtitle.fillStyle = "rgba(216, 179, 101, 1)";
+                  ctxSubtitle.textAlign = "center";
+                  ctxSubtitle.textBaseline = "middle";
+
+                  var xSubtitle = subtitleCanvas.width / 2;
+                  var ySubtitle = subtitleCanvas.height / 2;
+
+                  function animateFadeIn() {
+                      ctxSubtitle.clearRect(0, 0, subtitleCanvas.width, subtitleCanvas.height);
+
+                      if (opacity < 1) {
+                          opacity += 0.01;
+                          ctxSubtitle.globalAlpha = opacity;
+                          ctxSubtitle.fillText(subtitleText, xSubtitle, ySubtitle);
+                          button.style.opacity = opacity;
+                          requestAnimationFrame(animateFadeIn);
+                      } else {
+                          ctxSubtitle.globalAlpha = 1;
+                          ctxSubtitle.fillText(subtitleText, xSubtitle, ySubtitle);
+                          button.classList.add("hover-enabled"); // Aggiunge la classe dopo che il pulsante è visibile
+                          fadeInFooter();
+                      }
+                  }
+
+                  button.style.opacity = "0";
+                  button.style.transition = "opacity 0.3s ease";
+                  animateFadeIn();
+              }
+
+              function fadeInFooter() {
+                  var footerCanvas = document.querySelector("#animated-footer");
+                  var footerText = "A Digital History Project by Vittorio Tonini";
+                  var ctxFooter = footerCanvas.getContext("2d");
+                  var opacity = 0;
+
+                  ctxFooter.font = "30px 'Cormorant Unicase', serif";
+                  ctxFooter.fillStyle = "rgba(216, 179, 101, 1)";
+                  ctxFooter.textAlign = "center";
+                  ctxFooter.textBaseline = "middle";
+
+                  var xFooter = footerCanvas.width / 2;
+                  var yFooter = footerCanvas.height / 2;
+
+                  function animateFooterFadeIn() {
+                      ctxFooter.clearRect(0, 0, footerCanvas.width, footerCanvas.height);
+
+                      if (opacity < 1) {
+                          opacity += 0.01;
+                          ctxFooter.globalAlpha = opacity;
+                          ctxFooter.fillText(footerText, xFooter, yFooter);
+                          requestAnimationFrame(animateFooterFadeIn);
+                      } else {
+                          ctxFooter.globalAlpha = 1;
+                          ctxFooter.fillText(footerText, xFooter, yFooter);
+                      }
+                  }
+
+                  animateFooterFadeIn();
+              }
+          };
+      };
+    </script>
+</head>
+<body>
+    <div class="navbar">
+        <a href="https://vittoriotonini.github.io/Catasto-Chronicles/" style="text-decoration: none; color: inherit;">
+            <div class="logo">Catasto Chronicles</div>
+        </a>
+        <ul>
+            <li><a href="project.html">Project</a></li>
+            <li><a href="glossary.html">Glossary</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </div>
+    <div class="background">
+        <div class="catasto-map"></div>
+        <div class="pianta-catena"></div>
+    </div>
+    <div class="person-tablet"></div>
+    <div class="person-drawing"></div>
+    <div style="
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 6;
+        text-align: center;
+    ">
+        <canvas id="animated-title" width="800" height="300"></canvas>
+    </div>
+    <div style="
+        position: absolute;
+        top: 55%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9;
+        text-align: center;
+    ">
+        <a id="animated-button" href="https://1427catastochronicles.netlify.app/" target="_blank">Start to Explore</a>
+    </div>
+    <div style="
+        position: absolute;
+        top: 45%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 6;
+        text-align: center;
+    ">
+        <canvas id="animated-subtitle" width="1350" height="150"></canvas>
+    </div>
+</body>
+</html>

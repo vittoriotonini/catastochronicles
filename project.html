@@ -1,0 +1,267 @@
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catasto Chronicles - Project</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Unicase:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Cormorant Unicase', serif;
+            background-color: #1c1c1c;
+            color: white;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px;
+            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .navbar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin-right: 50px;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.4rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .navbar ul li a:hover {
+            color: #ccc;
+        }
+
+        .hero {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50vh; /* Altezza ridotta */
+            position: relative;
+            text-align: center;
+            color: white;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://archiviodigitale-icar.cultura.gov.it/iiif/diplomatico-firenze@get@17ca2ec6-4ee5-4b7b-b4a0-5960e7027fe3@original/pct:6.752,8.822,88.966,50.746/full/0/default.jpg');
+            background-size: cover;
+            background-position: center;
+            filter: brightness(15%); /* Oscuramento immagine */
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2; /* Sovrapposto sopra l'immagine scurita */
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .fade-in-delayed {
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-top: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .section {
+            padding: 50px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: transparent;
+            background-image: url('https://github.com/vittoriotonini/Catasto-Chronicles_files/blob/d0cc79f0f2cf3be46e5e16dce17446ae7b2babfc/200.png?raw=true');
+            background-clip: text;
+            -webkit-background-clip: text;
+            text-fill-color: transparent;
+            -webkit-text-fill-color: transparent; /* Per compatibilità */
+            animation: fadeIn 1.2s ease-in-out;
+        }
+
+        .section p {
+            font-family: 'Roboto', sans-serif; /* Font più leggibile e minimale */
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #ddd;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .section biblio {
+            font-family: 'Roboto', sans-serif; /* Font più leggibile e minimale */
+            font-size: 1.2rem;
+            line-height: 1.5;
+            color: #ddd;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .footer {
+            background-color: rgba(0, 0, 0, 0.9);
+            color: #d8b365;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="https://vittoriotonini.github.io/Catasto-Chronicles/" style="text-decoration: none; color: inherit;">
+            <div class="logo">Catasto Chronicles</div>
+        </a>
+        <ul>
+            <li><a href="project.html">Project</a></li>
+            <li><a href="glossary.html">Glossary</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </div>
+
+    <div class="hero">
+        <div class="hero-content fade-in">
+            <h1 class="fade-in">About the Project</h1>
+            <p class="fade-in-delayed">Purpose and Methodology: A Historical and Technical Overview</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="fade-in">Purpose</h2>
+        <p class="fade-in-delayed">
+            The <strong>Catasto Chronicles</strong> project aims to illuminate the socio-economic and administrative landscape of the Florentine state in 1427 by leveraging the <strong>Catasto</strong> records and translating them into an interactive, dynamic mapping interface. This initiative highlights the insights of families, regions, and professions and offers a visual representation of wealth distribution, demographic patterns, and political structures. The project unfolds through three key phases:
+        </p>
+        <p class="fade-in-delayed">
+            <strong>Data Collection and Integration:</strong> Historical data from the <strong>Catasto</strong> records, including household wealth, occupations, and demographic information, is digitized and standardized. This phase involves integrating datasets from prior scholarly works, such as those by <strong>Christiane Klapisch-Zuber</strong> and <strong>David Herlihy</strong>, with modern tools for handling geographic and historical data.
+        </p>
+        <p class="fade-in-delayed">
+            <strong>Georeferencing Settlements and Administrative Regions:</strong> Settlements, city districts, and rural regions are georeferenced using historical maps and GIS data. This step aligns the spatial information with the historical data, defining precise boundaries and locations for each region. Administrative layers such as gonfaloni, popoli, and macro-regions are meticulously mapped to ensure historical accuracy.
+        </p>
+        <p class="fade-in-delayed">
+            <strong>Construction of the Interactive Map:</strong> An interactive geospatial platform is developed using tools such as folium and Leaflet. This map incorporates marker clusters, responsive tooltips, and zoom-based visibility to enhance usability. The interface visualizes connections between families and regions, highlights socio-economic patterns, and provides dynamic elements like charts and interactive layers for in-depth exploration.
+        </p>
+        <p class="fade-in-delayed">
+            This phased approach ensures that the <strong>Catasto Chronicles</strong> not only preserves historical data but also transforms it into an engaging and accessible resource for researchers, educators, and the public. The interactive map is central to the project, enabling users to explore Florence's intricate socio-economic fabric with unprecedented depth and interactivity.
+        </p>
+    </div>
+
+    <div class="section">
+        <h2 class="fade-in">Computational Techniques</h2>
+        <p class="fade-in-delayed">
+            The Catasto Chronicles project integrates a diverse array of computational tools and technologies to transform historical records into a dynamic, interactive mapping platform. At the core of this implementation is Python, utilizing libraries like folium to generate geospatial visualizations that seamlessly combine historical data with modern mapping frameworks. The use of Leaflet.js, integrated via Folium, provides robust interactivity for the visualization of regions, settlements, and family markers, while JavaScript enhances functionality with custom search features, animated tooltips, and dynamic pop-ups.
+        </p>
+        <p class="fade-in-delayed">
+            The project employs QGIS for pre-processing and cleaning historical geographical data, converting it into standardized GeoJSON files. These files define spatial boundaries, settlements, and marker positions, ensuring precise alignment with historical maps. Through Flask APIs, backend services handle data fetching, enabling real-time access to details about families, regions, and connections. These APIs dynamically respond to queries, offering customized insights into wealth distribution, occupations, and demographic patterns.
+        </p>
+        <p class="fade-in-delayed">
+            For a cohesive user experience, CSS styles refine the interface with visually appealing tooltips, pop-ups, and map legends, while JavaScript animations and event handling ensure smooth interaction. Features such as marker clustering, zoom-based visibility toggles, and dynamic lines connecting related markers enrich usability. Together, these computational techniques create a sophisticated platform that bridges historical scholarship with cutting-edge visualization technologies, offering both depth and accessibility to researchers and the public.
+        </p>
+    </div>
+
+    <div class="section">
+        <h2 class="fade-in">Historiographical Approach</h2>
+        <p class="fade-in-delayed">
+            The Catasto Chronicles project was guided by a commitment to contextual accuracy in its historiographical choices. It relies on a combination of primary and secondary sources to reconstruct and visualize the socio-economic and territorial structures of Florence and its domains in 1427. At its core is the 1427 Florentine cadastre (<strong>Catasto</strong>), meticulously digitized by <strong>Christiane Klapisch-Zuber</strong>, <strong>Béatrice Marin</strong>, and <strong>Nicolas Veysset</strong>. This dataset provides detailed demographic, economic, and geographic information on approximately 60,000 family units, offering an unparalleled glimpse into Florentine society. The integration with the Archivio delle Tratte further contributed essential data on political offices and affiliations, enabling the visualization of socio-political structures.
+        </p>
+        <p class="fade-in-delayed">
+            Historical maps by <strong>Christiane Klapisch-Zuber</strong> and <strong>Elio Conti</strong> laid the groundwork for georeferencing administrative boundaries and settlement locations using modern GIS techniques. To locate rural settlements and chapels with precision, the project employed a diverse array of historical and cartographic resources. <strong>Emanuele Repetti</strong>’s <em>Dizionario Geografico Fisico Storico della Toscana</em> offered in-depth insights into Tuscan toponyms and historical geography. This was supplemented by archival and geospatial data from the Progetto Castore of the Tuscany Region and the ecclesiastical database by the Italian Episcopal Conference, which catalogs extant and historical churches and chapels. Additionally, <strong>Christiane Klapisch-Zuber</strong>'s studies on 1427-1430 Tuscan settlement patterns and <strong>Elio Conti</strong>'s research on the agrarian structures of the Florentine contado were invaluable. Maps from the <strong>Italian Military Geographic Institute</strong> (IGM) also played a crucial role in integrating historical boundaries.
+        </p>
+        <p class="fade-in-delayed">
+            The integration of these sources into a digital framework was not merely a technical endeavor but an interpretative exercise. Decisions about which data to include, how to represent it, and the weighting of different historiographical perspectives reflect the nuanced challenges inherent in digital historical reconstruction. These choices highlight the project's dual commitment to scholarly rigor and accessibility, ensuring its value to both academic researchers and broader audiences.
+        </p>
+    </div>
+
+    <div class="section biblio">
+        <h2 class="fade-in">Bibliography and Online Resources</h2>
+        <p><strong>Klapisch-Zuber, Christiane, and David Herlihy.</strong> <em>I toscani e le loro famiglie. Uno studio sul catasto fiorentino del 1427.</em> Translated by M. Bensi. Bologna: Il Mulino, 1988.</p>
+        <p><strong>Klapisch-Zuber, Christiane.</strong> <em>Una carta del popolamento toscano negli anni 1427-1430.</em> In <em>La formazione della struttura agraria moderna nel contado fiorentino,</em> ed. Elio Conti, 198-220. Milano: Franco Angeli, 1981.</p>
+        <p><strong>Cavalcanti, Giovanni.</strong> <em>Istorie fiorentine.</em> Ed. Filippo Luigi Polidori. Firenze: Tipografia all'insegna di Dante, 1838.</p>
+        <p><strong>Ninci, Renzo.</strong> <em>Lo scrutinio elettorale nel periodo albizzesco (1393-1434).</em> Roma: Ministero per i beni culturali e ambientali, 1994.</p>
+        <p><strong>Bettarini, Francesco.</strong> <em>I fiorentini all’estero ed il catasto del 1427.</em> In <em>Annali di Storia di Firenze,</em> VI (2011).</p>
+        <p><strong>Procacci, Ugo.</strong> <em>Studio sul catasto fiorentino.</em> Firenze: Olschki, 1973.</p>
+        <p><strong>Goldthwaite, Richard A.</strong> <em>L'economia della Firenze rinascimentale.</em> Bologna: Il Mulino, 2011.</p>
+        <p><strong>Padgett, John F., and Christopher K. Ansell.</strong> <em>Robust Action and the Rise of the Medici, 1400-1434.</em> <em>American Journal of Sociology,</em> 98, no. 6 (1993): 1259-1319.</p>
+        <p><strong>Najemy, John M.</strong> <em>A History of Florence 1200-1575.</em> Oxford: Oxford University Press, 2008.</p>
+        <p><strong>Hale, J. R.</strong> <em>Florence and the Medici: The Pattern of Control.</em> London: Thames & Hudson, 1977.</p>
+        <p><strong>Bruni, Leonardo.</strong> <em>Panegirico della città di Firenze.</em> Roma: Tipografia Regionale, 1906.</p>
+        <p><strong>Herlihy, David.</strong> <em>Medieval Households.</em> Cambridge, MA: Harvard University Press, 1985.</p>
+        <p><strong>Vannucci, Marcello.</strong> <em>Le grandi famiglie di Firenze.</em> Roma: Newton Compton Editori, 2006.</p>
+        <p><strong>Repetti, Emanuele.</strong> <em>Dizionario Geografico Fisico Storico della Toscana.</em>
+        <p><strong>Franceschi, Franco.</strong> <em>Intervento del potere centrale e ruolo delle Arti nel governo dell'economia fiorentina.</em> In <em>Rivista di Storia Economica,</em> XX (2004).</p>
+        <p><strong>Christiane Klapisch-Zuber, Béatrice Marin, and Nicolas Veysset.</strong> 
+        “Le catasto florentin de 1427-1430: présentation générale de l'enquête et du code.” 
+        <em>L’Atelier du Centre de recherches historiques [Online], Les Enquêtes Collectives du CRH.</em> 
+        Online since 30 November 2016, accessed on 10 January 2025. 
+        URL: <a href="http://journals.openedition.org/acrh/7458" target="_blank">http://journals.openedition.org/acrh/7458</a>;</p>
+        <p><strong>Florentine Renaissance Resources, Online Tratte of Office Holders, 1282-1532.</strong> 
+        Machine-readable data file. Edited by David Herlihy, R. Burr Litchfield, Anthony Molho, and Roberto Barducci. 
+        (Florentine Renaissance Resources/STG: Brown University, Providence, R.I., 2002.)</p>
+        <p><strong>Online Catasto of 1427. Version 1.3.</strong> 
+        Edited by David Herlihy, Christiane Klapisch-Zuber, R. Burr Litchfield, and Anthony Molho. 
+        [Machine-readable data file based on D. Herlihy and C. Klapisch-Zuber, Census and Property Survey of Florentine Domains in the Province of Tuscany, 1427-1480.] 
+        (Florentine Renaissance Resources/STG: Brown University, Providence, R.I., 2002.)</p>
+        <p><strong>Progetto Castore.</strong> <a href="https://www502.regione.toscana.it/castoreapp/" target="_blank">https://www502.regione.toscana.it/castoreapp/</a>.</p>
+        <p><strong>Le Chiese delle Diocesi italiane.</strong> <a href="https://chieseitaliane.chiesacattolica.it/chieseitaliane/" target="_blank">https://chieseitaliane.chiesacattolica.it/chieseitaliane/</a>.</p>
+        <p><strong>Istituto Geografico Militare Italiano (IGM).</strong> <a href="https://www.igmi.org/carte-antiche#b_start=0" target="_blank">https://www.igmi.org/carte-antiche#b_start=0</a>.</p>
+    </div>
+
+    <div class="footer">
+        <p>A Digital History Project by Vittorio Tonini</p>
+    </div>
+</body>
+</html>
+
