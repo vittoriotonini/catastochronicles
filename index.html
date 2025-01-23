@@ -315,17 +315,24 @@
 
               function fadeInFooter() {
                   var footerCanvas = document.querySelector("#animated-footer");
-                  var footerText = "A Digital History Project by Vittorio Tonini";
+                  var footerTextLine1 = "A Digital History Project by Vittorio Tonini";
+                  var footerTextLine2 = "© Licensed under CC BY-NC-SA 4.0";
                   var ctxFooter = footerCanvas.getContext("2d");
                   var opacity = 0;
 
-                  ctxFooter.font = "30px 'Cormorant Unicase', serif";
+                  // Stile della prima riga
+                  var fontSizeLine1 = 30; // Font più grande per la prima riga
+                  var fontSizeLine2 = 25; // Font più piccolo per la seconda riga
+
+                  var lineSpacing = 20; // Distanza aggiuntiva tra le righe
+
                   ctxFooter.fillStyle = "rgba(216, 179, 101, 1)";
                   ctxFooter.textAlign = "center";
                   ctxFooter.textBaseline = "middle";
 
                   var xFooter = footerCanvas.width / 2;
-                  var yFooter = footerCanvas.height / 2;
+                  var yFooterLine1 = footerCanvas.height / 2 - lineSpacing; // Prima riga (più in alto)
+                  var yFooterLine2 = footerCanvas.height / 2 + fontSizeLine1 / 2 + lineSpacing; // Seconda riga (più in basso)
 
                   function animateFooterFadeIn() {
                       ctxFooter.clearRect(0, 0, footerCanvas.width, footerCanvas.height);
@@ -333,11 +340,26 @@
                       if (opacity < 1) {
                           opacity += 0.01;
                           ctxFooter.globalAlpha = opacity;
-                          ctxFooter.fillText(footerText, xFooter, yFooter);
+
+                          // Disegno della prima riga
+                          ctxFooter.font = `${fontSizeLine1}px 'Cormorant Unicase', serif`;
+                          ctxFooter.fillText(footerTextLine1, xFooter, yFooterLine1);
+
+                          // Disegno della seconda riga
+                          ctxFooter.font = `${fontSizeLine2}px 'Cormorant Unicase', serif`;
+                          ctxFooter.fillText(footerTextLine2, xFooter, yFooterLine2);
+
                           requestAnimationFrame(animateFooterFadeIn);
                       } else {
                           ctxFooter.globalAlpha = 1;
-                          ctxFooter.fillText(footerText, xFooter, yFooter);
+
+                          // Disegno finale della prima riga
+                          ctxFooter.font = `${fontSizeLine1}px 'Cormorant Unicase', serif`;
+                          ctxFooter.fillText(footerTextLine1, xFooter, yFooterLine1);
+
+                          // Disegno finale della seconda riga
+                          ctxFooter.font = `${fontSizeLine2}px 'Cormorant Unicase', serif`;
+                          ctxFooter.fillText(footerTextLine2, xFooter, yFooterLine2);
                       }
                   }
 
@@ -402,7 +424,7 @@
         left: 5%;
         z-index: 9;
     ">
-        <canvas id="animated-footer" width="800" height="60"></canvas>
+        <canvas id="animated-footer" width="800" height="120"></canvas>
     </div>
 </body>
 </html>
