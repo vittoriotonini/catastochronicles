@@ -1,0 +1,208 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Licenses and Attributions</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Unicase:wght@300;400;500;600;700');
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Cormorant Unicase', serif;
+            position: relative;
+            overflow: hidden;
+            color: white;
+            line-height: 1.6;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://github.com/vittoriotonini/Catasto-Chronicles_files/blob/a9316ef3e58d2394d5ca2d354133e3e4b634f079/catastomap.png?raw=true') no-repeat center center fixed;
+            background-size: cover;
+            filter: brightness(0.3); /* Oscurisce l'immagine */
+            z-index: -1;
+            opacity: 0; /* Inizio invisibile */
+            animation: fadeIn 2s ease-in-out forwards; /* Animazione fade-in */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px;
+            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Cormorant Unicase', serif; /* Add this line */
+        }
+
+        .navbar .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .navbar ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin-right: 50px;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.4rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            font-family: 'Cormorant Unicase', serif; /* Add this line */
+        }
+
+        .navbar ul li a:hover {
+            color: #ccc;
+        }
+
+        .container {
+            padding: 100px 20px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        h1, h2 {
+            color: white;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-top: 30px;
+        }
+
+        p, ul {
+            margin-bottom: 20px;
+            color: #ddd;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.2rem;
+        }
+
+        ul {
+            list-style: disc inside;
+            padding-left: 20px;
+        }
+
+        a {
+            color: #d8b365;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #d8b365;
+        }
+
+        blockquote {
+            border-left: 4px solid #d8b365;
+            margin: 10px 0;
+            padding: 10px 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="https://vittoriotonini.github.io/catastochronicles/" style="text-decoration: none; color: inherit;">
+            <div class="logo">Catasto Chronicles</div>
+        </a>
+        <ul>
+            <li><a href="project.html">Project</a></li>
+            <li><a href="glossary.html">Glossary</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="licenses.html">Attributions</a></li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <h1>Licenses and Attributions</h1>
+
+        <h2>Project License</h2>
+        <p>This project is distributed under the <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)</a> license. Users may access and use any materials in this website exclusively for non-commercial and educational purposes, and while maintaining attribution and the same license.</p>
+        <p><strong>Required Attribution:</strong></p>
+        <blockquote>
+            <strong>"Catasto Chronicles,"</strong> created and curated by Vittorio Tonini, is shared under a 
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-NC-SA 4.0 license</a>. 
+            Learn more at <a href="https://vittoriotonini.github.io/catastochronicles/" target="_blank" rel="noopener noreferrer">https://vittoriotonini.github.io/catastochronicles/</a>.
+        </blockquote>
+
+        <h2>Third-Party Licenses</h2>
+        <p>This project uses third-party resources and libraries subject to the following licenses:</p>
+        <ul>
+            <li><strong>Font:</strong> Copyright 2015 the Cormorant Project Authors (<a href="https://github.com/CatharsisFonts/Cormorant">GitHub</a>). This software is distributed under the <a href="https://openfontlicense.org">SIL Open Font License, Version 1.1</a>.</li>
+            <li><strong>Leaflet.js:</strong> <a href="https://leafletjs.com/">Leaflet</a>, distributed under the BSD 2-Clause license.</li>
+            <li><strong>jQuery:</strong> <a href="https://jquery.com/">jQuery</a>, distributed under the MIT license.</li>
+            <li><strong>Bootstrap:</strong> <a href="https://getbootstrap.com/">Bootstrap</a>, distributed under the MIT license.</li>
+            <li><strong>Font Awesome:</strong> <a href="https://fontawesome.com/">Font Awesome</a>, free icons under the CC BY 4.0 license.</li>
+            <li><strong>Leaflet.awesome-markers:</strong> Plugin for custom markers, distributed under the MIT license.</li>
+            <li><strong>Chart.js:</strong> <a href="https://www.chartjs.org/">Chart.js</a>, distributed under the MIT license.</li>
+            <li><strong>Leaflet.MousePosition:</strong> Plugin for mouse coordinates, distributed under the MIT license.</li>
+            <li><strong>Leaflet.markercluster:</strong> Plugin for marker clustering, distributed under the MIT license.</li>
+            <li><strong>Esri World Imagery:</strong> <a href="https://www.esri.com/">Esri</a>, used under Esri terms and conditions.</li>
+        </ul>
+
+        <h2>Images</h2>
+        <ul>
+            <li><strong>"Pianta della Catena":</strong> Christopher Saint P, distributed under the <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> license, via Wikimedia Commons.</li>
+            <li><strong>"Detail of Pianta della Catena":</strong> Rijksmuseum, public domain <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>, via Wikimedia Commons.</li>
+        </ul>
+
+        <h2>Attributions</h2>
+        <p>We thank the authors of the following resources, which were essential for the realization of the project:</p>
+        <ul>
+            <li>Christiane Klapisch-Zuber, Béatrice Marin, and Nicolas Veysset - “<a href="http://journals.openedition.org/acrh/7458">Le catasto florentin de 1427-1430: présentation générale de l'enquête et du code</a>”, <em>L’Atelier du Centre de recherches historiques</em>, 2016. DOI: <a href="https://doi.org/10.4000/acrh.7458">10.4000/acrh.7458</a>.</li>
+            <li><em>Florentine Renaissance Resources, Online Tratte of Office Holders, 1282-1532</em>. Machine readable data file. Edited by David Herlihy, R. Burr Litchfield, Anthony Molho, and Roberto Barducci. (<a href="https://www.brown.edu/Departments/Italian_Studies/projects/tratte/">Brown University</a>, 2002).</li>
+        </ul>
+
+        <h2>Contact</h2>
+        <p>For questions about copyright, licenses, or attributions, contact us via email: <a href="mailto:vittorio.tonini@example.com">vittoriotonini@hotmail.it</a>.</p>
+
+    </div>
+</body>
+</html>
